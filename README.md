@@ -1,0 +1,2 @@
+# jsoninf
+JSON schema inference
