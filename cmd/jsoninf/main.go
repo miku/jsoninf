@@ -1,7 +1,27 @@
 package main
 
-import "log"
+import (
+	"bufio"
+	"encoding/json"
+	"io"
+	"log"
+	"os"
+)
 
 func main() {
-	log.Println("jsoninf")
+	br := bufio.NewReader(os.Stdin)
+	for {
+		b, err := br.ReadBytes('\n')
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			log.Fatal(err)
+		}
+		var stub = make(map[string]interface{})
+		if err := json.Unmarshal(b, &stub); err != nil {
+			log.Fatal(err)
+		}
+		log.Println(stub)
+	}
 }
