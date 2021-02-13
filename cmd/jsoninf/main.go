@@ -2,16 +2,20 @@ package main
 
 import (
 	"bufio"
-	"encoding/json"
 	"fmt"
 	"io"
 	"log"
 	"os"
 	"reflect"
 	"sort"
+
+	jsoniter "github.com/json-iterator/go"
 )
 
-var pathTypes = make(map[string]string)
+var (
+	json      = jsoniter.ConfigCompatibleWithStandardLibrary
+	pathTypes = make(map[string]string)
+)
 
 func dumpTypes(m map[string]interface{}, parent string, line int) {
 	for k, v := range m {
