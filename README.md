@@ -44,7 +44,9 @@ $ jsoninf < fixtures/b.json > /dev/null
 
 # Performance
 
-* checking 1M lines takes about 8min
+Disclaimer: This is totally unoptimized code.
+
+* checking 1M lines takes about 7min
 
 # Literature
 
