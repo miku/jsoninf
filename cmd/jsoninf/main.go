@@ -15,6 +15,8 @@ import (
 var (
 	json      = jsoniter.ConfigCompatibleWithStandardLibrary
 	pathTypes = make(map[string]string)
+
+	numIssues int
 )
 
 func dumpTypes(m map[string]interface{}, parent string, line int) {
@@ -34,6 +36,7 @@ func dumpTypes(m map[string]interface{}, parent string, line int) {
 			if ok {
 				if kind != t {
 					log.Printf("line %d: mixed types detected in: %s [%s, %s]", line, path, t, kind)
+					numIssues++
 				}
 			} else {
 				pathTypes[path] = kind
@@ -68,4 +71,5 @@ func main() {
 	for _, k := range keys {
 		fmt.Printf("%s [%s]\n", k, pathTypes[k])
 	}
+	log.Printf("found %d issues in %d lines", numIssues, line)
 }
