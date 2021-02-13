@@ -27,6 +27,13 @@ func dumpTypes(m map[string]interface{}, parent string, line int) {
 			continue
 		}
 		switch reflect.TypeOf(v).Kind() {
+		case reflect.Slice:
+			w := v.([]interface{})
+			for _, e := range w {
+				// XXX: infer value
+				eKind := reflect.TypeOf(e).Kind()
+				pathTypes[path] = fmt.Sprintf("[]%s", eKind)
+			}
 		case reflect.Map:
 			w := v.(map[string]interface{})
 			dumpTypes(w, path, line)
