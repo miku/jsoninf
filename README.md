@@ -2,6 +2,8 @@
 
 JSON schema inference, especially from JSON lines.
 
+* stage: "mvp", "wip"
+
 # Problem
 
 Given a blob of JSON documents w/o explicit schema, infer structure and data
