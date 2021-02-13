@@ -21,7 +21,15 @@ func dumpTypes(m map[string]interface{}, parent string) {
 			w := v.(map[string]interface{})
 			dumpTypes(w, path)
 		default:
-			pathTypes[path] = fmt.Sprintf("%v", reflect.TypeOf(v).Kind())
+			kind := fmt.Sprintf("%v", reflect.TypeOf(v).Kind())
+			t, ok := pathTypes[path]
+			if ok {
+				if kind != t {
+					log.Printf("mixed types detected: %s [%s, %s]", path, t, kind)
+				}
+			} else {
+				pathTypes[path] = kind
+			}
 		}
 	}
 }
