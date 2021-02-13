@@ -16,19 +16,21 @@ var pathTypes = make(map[string]string)
 func dumpTypes(m map[string]interface{}, parent string, line int) {
 	for k, v := range m {
 		path := fmt.Sprintf("%s/%s", parent, k)
-		switch reflect.TypeOf(v).Kind() {
-		case reflect.Map:
-			w := v.(map[string]interface{})
-			dumpTypes(w, path, line)
-		default:
-			kind := fmt.Sprintf("%v", reflect.TypeOf(v).Kind())
-			t, ok := pathTypes[path]
-			if ok {
-				if kind != t {
-					log.Printf("line %d: mixed types detected in: %s [%s, %s]", line, path, t, kind)
+		if v != nil {
+			switch reflect.TypeOf(v).Kind() {
+			case reflect.Map:
+				w := v.(map[string]interface{})
+				dumpTypes(w, path, line)
+			default:
+				kind := fmt.Sprintf("%v", reflect.TypeOf(v).Kind())
+				t, ok := pathTypes[path]
+				if ok {
+					if kind != t {
+						log.Printf("line %d: mixed types detected in: %s [%s, %s]", line, path, t, kind)
+					}
+				} else {
+					pathTypes[path] = kind
 				}
-			} else {
-				pathTypes[path] = kind
 			}
 		}
 	}
