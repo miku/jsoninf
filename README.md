@@ -42,6 +42,32 @@ $ jsoninf < fixtures/b.json > /dev/null
 2021/02/13 01:47:47 line 2: mixed types detected in: /a [string, float64]
 ```
 
+Example:
+
+```
+$ jsoninf < fixtures/ref.json
+/biblio/arxiv_id [string]
+/biblio/container_name [string]
+/biblio/contrib_raw_names [slice]
+/biblio/doi [string]
+/biblio/issue [string]
+/biblio/pages [string]
+/biblio/pmcid [string]
+/biblio/publisher [string]
+/biblio/title [string]
+/biblio/unstructured [string]
+/biblio/url [string]
+/biblio/volume [string]
+/biblio/year [float64]
+/index [float64]
+/key [string]
+/ref_source [string]
+/release_ident [string]
+/release_year [float64]
+/work_ident [string]
+2021/02/13 02:21:47 found 0 issues in 1 lines
+```
+
 # Performance
 
 Disclaimer: This is totally unoptimized code.
