@@ -1,5 +1,5 @@
 SHELL := /bin/bash
-TARGETS := jsoninf
+TARGETS := jsoninf jsongs
 PKGNAME := jsoninf
 
 .PHONY: all
