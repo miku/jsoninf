@@ -14,6 +14,32 @@ JSON datasets.
 $ jsoninf < file.ndj
 ```
 
+# Examples
+
+```shell
+$ cat fixtures/a.json
+{"a": "hello"}
+{"a": "world"}
+
+$ jsoninf < fixtures/a.json
+/a [string]
+
+$ cat fixtures/b.json
+{"a": "hello"}
+{"a": 123 }
+
+$ jsoninf < fixtures/b.json
+2021/02/13 01:47:47 line 2: mixed types detected in: /a [string, float64]
+/a [string]
+```
+
+To only print errors:
+
+```shell
+$ jsoninf < fixtures/b.json > /dev/null
+2021/02/13 01:47:47 line 2: mixed types detected in: /a [string, float64]
+```
+
 # Literature
 
 * [Schema Inference for Massive JSON Datasets](https://openproceedings.org/2017/conf/edbt/paper-62.pdf)
