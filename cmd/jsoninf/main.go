@@ -49,7 +49,6 @@ func main() {
 	br := bufio.NewReader(os.Stdin)
 	var line int
 	for {
-		line++
 		b, err := br.ReadBytes('\n')
 		if err == io.EOF {
 			break
@@ -57,6 +56,7 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
+		line++
 		var stub = make(map[string]interface{})
 		if err := json.Unmarshal(b, &stub); err != nil {
 			log.Fatal(err)
